@@ -5,13 +5,13 @@
 node_modules
 target
 dist
-/core/tauri/scripts/bundle.global.js
+/crates/tauri/scripts/bundle.global.js
 /tooling/cli/templates
 /tooling/cli/node
 /tooling/cli/schema.json
-/core/tauri-config-schema/schema.json
+/crates/tauri-config-schema/schema.json
 CHANGELOG.md
 *.wxs
 **/reference.md
 *schema.json
-core/tauri/scripts/process-ipc-message-fn.js
+/crates/tauri/scripts/process-ipc-message-fn.js
