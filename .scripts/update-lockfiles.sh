@@ -5,7 +5,7 @@
 # SPDX-License-Identifier: MIT
 
 declare -a examples=("api" "sidecar" "resources" "tauri-dynamic-lib" "workspace")
-declare -a tooling=("bench" "cli" "webdriver")
+declare -a tooling=("bench" "cli")
 
 for example in "${examples[@]}"
 do
