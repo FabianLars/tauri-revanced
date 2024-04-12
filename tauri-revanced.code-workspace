@@ -1,0 +1,14 @@
+{
+  "folders": [
+	{
+		"path": "."
+	},
+	{
+		"path": "tooling/bundler"
+	},
+	{
+		"path": "tooling/cli"
+	}
+],
+  "settings": {}
+}
