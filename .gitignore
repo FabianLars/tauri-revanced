@@ -74,15 +74,10 @@ target
 
 # lock for libs
 #/Cargo.lock Committed to prevent msrv checks from failing
-/tooling/bench/tests/Cargo.lock
 /yarn.lock
 
 # ignore frida handlers
 __handlers__/
-
-# benches
-gh-pages
-test_video.mp4
 
 # old cli directories
 /tooling/cli.js
