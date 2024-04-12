@@ -15,9 +15,9 @@
     "format:check": "prettier --check . --config .prettierrc --ignore-path .prettierignore"
   },
   "devDependencies": {
-    "prettier": "^2.5.1"
+    "prettier": "^3.2.5"
   },
   "dependencies": {
-    "typescript": "^4.5.4"
+    "typescript": "^5.4.5"
   }
 }

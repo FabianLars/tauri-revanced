@@ -1,0 +1,5 @@
+packages:
+  - api.js
+  - examples/api
+  - examples/file-associations
+  - examples/isolation

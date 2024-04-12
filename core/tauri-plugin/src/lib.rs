@@ -2,13 +2,11 @@
 // SPDX-License-Identifier: Apache-2.0
 // SPDX-License-Identifier: MIT
 
-//! [![](https://github.com/tauri-apps/tauri/raw/dev/.github/splash.png)](https://tauri.app)
-//!
 //! Interface for building Tauri plugins.
 
 #![doc(
-  html_logo_url = "https://github.com/tauri-apps/tauri/raw/dev/app-icon.png",
-  html_favicon_url = "https://github.com/tauri-apps/tauri/raw/dev/app-icon.png"
+    html_logo_url = "https://github.com/tauri-apps/tauri/raw/dev/app-icon.png",
+    html_favicon_url = "https://github.com/tauri-apps/tauri/raw/dev/app-icon.png"
 )]
 #![cfg_attr(docsrs, feature(doc_cfg))]
 

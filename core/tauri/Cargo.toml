@@ -157,47 +157,11 @@ image-png = [ "image/png" ]
 macos-proxy = [ "tauri-runtime-wry/macos-proxy" ]
 
 [[example]]
-name = "commands"
-path = "../../examples/commands/main.rs"
-
-[[example]]
-name = "helloworld"
-path = "../../examples/helloworld/main.rs"
-
-[[example]]
 name = "multiwebview"
 path = "../../examples/multiwebview/main.rs"
 required-features = [ "unstable" ]
 
 [[example]]
-name = "multiwindow"
-path = "../../examples/multiwindow/main.rs"
-
-[[example]]
-name = "parent-window"
-path = "../../examples/parent-window/main.rs"
-
-[[example]]
-name = "navigation"
-path = "../../examples/navigation/main.rs"
-
-[[example]]
-name = "splashscreen"
-path = "../../examples/splashscreen/main.rs"
-
-[[example]]
-name = "state"
-path = "../../examples/state/main.rs"
-
-[[example]]
-name = "streaming"
-path = "../../examples/streaming/main.rs"
-
-[[example]]
 name = "isolation"
 path = "../../examples/isolation/main.rs"
 required-features = [ "isolation" ]
-
-[[example]]
-name = "run-iteration"
-path = "../../examples/run-iteration/main.rs"
