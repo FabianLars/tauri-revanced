@@ -7,8 +7,7 @@ name: test `@tauri-apps/cli`
 on:
   push:
     branches:
-      - dev
-      - 1.x
+      - main
   pull_request:
     paths:
       - '.github/workflows/test-cli-js.yml'

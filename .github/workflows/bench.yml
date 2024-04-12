@@ -7,8 +7,7 @@ name: bench
 on:
   push:
     branches:
-      - dev
-      - 1.x
+      - main
   workflow_dispatch:
   pull_request:
     paths:
