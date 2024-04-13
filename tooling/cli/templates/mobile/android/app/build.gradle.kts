@@ -52,7 +52,7 @@ dependencies {
     implementation(platform("{{this}}")){{/each}}
     {{~#each android-app-dependencies}}
     implementation("{{this}}"){{/each}}
-    implementation("androidx.webkit:webkit:1.6.1")
+    implementation("androidx.webkit:webkit:1.10.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.8.0")
     testImplementation("junit:junit:4.13.2")
