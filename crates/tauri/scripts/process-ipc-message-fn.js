@@ -1,7 +1,3 @@
-// Copyright 2019-2024 Tauri Programme within The Commons Conservancy
-// SPDX-License-Identifier: Apache-2.0
-// SPDX-License-Identifier: MIT
-
 // this is a function and not an iife so use it carefully
 
 (function (message) {

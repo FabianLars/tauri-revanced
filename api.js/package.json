@@ -2,16 +2,13 @@
     "name": "@tauri-apps/api",
     "version": "2.0.0-beta.7",
     "description": "Tauri API definitions",
-    "funding": {
-        "type": "opencollective",
-        "url": "https://opencollective.com/tauri"
-    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/tauri-apps/tauri.git"
     },
     "contributors": [
-        "Tauri Programme within The Commons Conservancy"
+        "Tauri Programme within The Commons Conservancy",
+        "FabianLars"
     ],
     "license": "Apache-2.0 OR MIT",
     "bugs": {
@@ -39,8 +36,8 @@
         "ts:check": "tsc -noEmit",
         "lint": "eslint --ext ts \"./src/**/*.ts\"",
         "lint:fix": "eslint --fix --ext ts \"./src/**/*.ts\"",
-        "format": "prettier --write . --config ../../.prettierrc --ignore-path .gitignore --ignore-path ../../.prettierignore",
-        "format:check": "prettier --check . --config ../../.prettierrc --ignore-path .gitignore --ignore-path ../../.prettierignore"
+        "format": "prettier --write . --config ../.prettierrc --ignore-path .gitignore --ignore-path ../.prettierignore",
+        "format:check": "prettier --check . --config ../.prettierrc --ignore-path .gitignore --ignore-path ../.prettierignore"
     },
     "devDependencies": {
         "@rollup/plugin-terser": "0.4.4",

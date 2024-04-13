@@ -1,7 +1,3 @@
-// Copyright 2019-2024 Tauri Programme within The Commons Conservancy
-// SPDX-License-Identifier: Apache-2.0
-// SPDX-License-Identifier: MIT
-
 //! Types and functions related to child processes management.
 
 use crate::Env;
@@ -46,13 +42,13 @@ use std::path::PathBuf;
 ///
 /// [AppImage]: https://appimage.org/
 pub fn current_binary(_env: &Env) -> std::io::Result<PathBuf> {
-  // if we are running from an AppImage, we ONLY want the set AppImage path
-  #[cfg(target_os = "linux")]
-  if let Some(app_image_path) = &_env.appimage {
-    return Ok(PathBuf::from(app_image_path));
-  }
+    // if we are running from an AppImage, we ONLY want the set AppImage path
+    #[cfg(target_os = "linux")]
+    if let Some(app_image_path) = &_env.appimage {
+        return Ok(PathBuf::from(app_image_path));
+    }
 
-  tauri_utils::platform::current_exe()
+    tauri_utils::platform::current_exe()
 }
 
 /// Restarts the currently running binary.
@@ -72,14 +68,14 @@ pub fn current_binary(_env: &Env) -> std::io::Result<PathBuf> {
 ///   });
 /// ```
 pub fn restart(env: &Env) {
-  use std::process::{exit, Command};
+    use std::process::{exit, Command};
 
-  if let Ok(path) = current_binary(env) {
-    Command::new(path)
-      .args(&env.args_os)
-      .spawn()
-      .expect("application failed to start");
-  }
+    if let Ok(path) = current_binary(env) {
+        Command::new(path)
+            .args(&env.args_os)
+            .spawn()
+            .expect("application failed to start");
+    }
 
-  exit(0);
+    exit(0);
 }

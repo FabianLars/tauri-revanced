@@ -1,8 +1,4 @@
-// Copyright 2019-2024 Tauri Programme within The Commons Conservancy
-// SPDX-License-Identifier: Apache-2.0
-// SPDX-License-Identifier: MIT
-
-import { invoke } from './core'
+import { invoke } from './core';
 
 /**
  * Application metadata and related APIs.
@@ -21,7 +17,7 @@ import { invoke } from './core'
  * @since 1.0.0
  */
 async function getVersion(): Promise<string> {
-  return invoke('plugin:app|version')
+    return invoke('plugin:app|version');
 }
 
 /**
@@ -35,7 +31,7 @@ async function getVersion(): Promise<string> {
  * @since 1.0.0
  */
 async function getName(): Promise<string> {
-  return invoke('plugin:app|name')
+    return invoke('plugin:app|name');
 }
 
 /**
@@ -50,7 +46,7 @@ async function getName(): Promise<string> {
  * @since 1.0.0
  */
 async function getTauriVersion(): Promise<string> {
-  return invoke('plugin:app|tauri_version')
+    return invoke('plugin:app|tauri_version');
 }
 
 /**
@@ -65,7 +61,7 @@ async function getTauriVersion(): Promise<string> {
  * @since 1.2.0
  */
 async function show(): Promise<void> {
-  return invoke('plugin:app|app_show')
+    return invoke('plugin:app|app_show');
 }
 
 /**
@@ -80,7 +76,7 @@ async function show(): Promise<void> {
  * @since 1.2.0
  */
 async function hide(): Promise<void> {
-  return invoke('plugin:app|app_hide')
+    return invoke('plugin:app|app_hide');
 }
 
-export { getName, getVersion, getTauriVersion, show, hide }
+export { getName, getVersion, getTauriVersion, show, hide };

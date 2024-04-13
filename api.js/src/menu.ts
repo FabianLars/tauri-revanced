@@ -1,13 +1,9 @@
-// Copyright 2019-2024 Tauri Programme within The Commons Conservancy
-// SPDX-License-Identifier: Apache-2.0
-// SPDX-License-Identifier: MIT
-
-export * from './menu/submenu'
-export * from './menu/menuItem'
-export * from './menu/menu'
-export * from './menu/checkMenuItem'
-export * from './menu/iconMenuItem'
-export * from './menu/predefinedMenuItem'
+export * from './menu/submenu';
+export * from './menu/menuItem';
+export * from './menu/menu';
+export * from './menu/checkMenuItem';
+export * from './menu/iconMenuItem';
+export * from './menu/predefinedMenuItem';
 
 /**
  * Menu types and utilities.

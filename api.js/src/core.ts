@@ -1,7 +1,3 @@
-// Copyright 2019-2024 Tauri Programme within The Commons Conservancy
-// SPDX-License-Identifier: Apache-2.0
-// SPDX-License-Identifier: MIT
-
 /**
  * Invoke your custom commands.
  *
@@ -17,90 +13,85 @@
  *
  * @since 1.0.0
  */
-function transformCallback<T = unknown>(
-  callback?: (response: T) => void,
-  once = false
-): number {
-  return window.__TAURI_INTERNALS__.transformCallback(callback, once)
+function transformCallback<T = unknown>(callback?: (response: T) => void, once = false): number {
+    return window.__TAURI_INTERNALS__.transformCallback(callback, once);
 }
 
 class Channel<T = unknown> {
-  id: number
-  // @ts-expect-error field used by the IPC serializer
-  private readonly __TAURI_CHANNEL_MARKER__ = true
-  #onmessage: (response: T) => void = () => {
-    // no-op
-  }
-  #nextMessageId = 0
-  #pendingMessages: Record<string, T> = {}
+    id: number;
+    // @ts-expect-error field used by the IPC serializer
+    private readonly __TAURI_CHANNEL_MARKER__ = true;
+    #onmessage: (response: T) => void = () => {
+        // no-op
+    };
+    #nextMessageId = 0;
+    #pendingMessages: Record<string, T> = {};
 
-  constructor() {
-    this.id = transformCallback(
-      ({ message, id }: { message: T; id: number }) => {
-        // the id is used as a mechanism to preserve message order
-        if (id === this.#nextMessageId) {
-          this.#nextMessageId = id + 1
-          this.#onmessage(message)
+    constructor() {
+        this.id = transformCallback(({ message, id }: { message: T; id: number }) => {
+            // the id is used as a mechanism to preserve message order
+            if (id === this.#nextMessageId) {
+                this.#nextMessageId = id + 1;
+                this.#onmessage(message);
 
-          // process pending messages
-          const pendingMessageIds = Object.keys(this.#pendingMessages)
-          if (pendingMessageIds.length > 0) {
-            let nextId = id + 1
-            for (const pendingId of pendingMessageIds.sort()) {
-              // if we have the next message, process it
-              if (parseInt(pendingId) === nextId) {
-                // eslint-disable-next-line security/detect-object-injection
-                const message = this.#pendingMessages[pendingId]
-                // eslint-disable-next-line security/detect-object-injection
-                delete this.#pendingMessages[pendingId]
+                // process pending messages
+                const pendingMessageIds = Object.keys(this.#pendingMessages);
+                if (pendingMessageIds.length > 0) {
+                    let nextId = id + 1;
+                    for (const pendingId of pendingMessageIds.sort()) {
+                        // if we have the next message, process it
+                        if (parseInt(pendingId) === nextId) {
+                            // eslint-disable-next-line security/detect-object-injection
+                            const message = this.#pendingMessages[pendingId];
+                            // eslint-disable-next-line security/detect-object-injection
+                            delete this.#pendingMessages[pendingId];
 
-                this.#onmessage(message)
+                            this.#onmessage(message);
 
-                // move the id counter to the next message to check
-                nextId += 1
-              } else {
-                // we do not have the next message, let's wait
-                break
-              }
+                            // move the id counter to the next message to check
+                            nextId += 1;
+                        } else {
+                            // we do not have the next message, let's wait
+                            break;
+                        }
+                    }
+                }
+            } else {
+                this.#pendingMessages[id.toString()] = message;
             }
-          }
-        } else {
-          this.#pendingMessages[id.toString()] = message
-        }
-      }
-    )
-  }
+        });
+    }
 
-  set onmessage(handler: (response: T) => void) {
-    this.#onmessage = handler
-  }
+    set onmessage(handler: (response: T) => void) {
+        this.#onmessage = handler;
+    }
 
-  get onmessage(): (response: T) => void {
-    return this.#onmessage
-  }
+    get onmessage(): (response: T) => void {
+        return this.#onmessage;
+    }
 
-  toJSON(): string {
-    return `__CHANNEL__:${this.id}`
-  }
+    toJSON(): string {
+        return `__CHANNEL__:${this.id}`;
+    }
 }
 
 class PluginListener {
-  plugin: string
-  event: string
-  channelId: number
+    plugin: string;
+    event: string;
+    channelId: number;
 
-  constructor(plugin: string, event: string, channelId: number) {
-    this.plugin = plugin
-    this.event = event
-    this.channelId = channelId
-  }
+    constructor(plugin: string, event: string, channelId: number) {
+        this.plugin = plugin;
+        this.event = event;
+        this.channelId = channelId;
+    }
 
-  async unregister(): Promise<void> {
-    return invoke(`plugin:${this.plugin}|remove_listener`, {
-      event: this.event,
-      channelId: this.channelId
-    })
-  }
+    async unregister(): Promise<void> {
+        return invoke(`plugin:${this.plugin}|remove_listener`, {
+            event: this.event,
+            channelId: this.channelId,
+        });
+    }
 }
 
 /**
@@ -111,15 +102,15 @@ class PluginListener {
  * @since 2.0.0
  */
 async function addPluginListener<T>(
-  plugin: string,
-  event: string,
-  cb: (payload: T) => void
+    plugin: string,
+    event: string,
+    cb: (payload: T) => void,
 ): Promise<PluginListener> {
-  const handler = new Channel<T>()
-  handler.onmessage = cb
-  return invoke(`plugin:${plugin}|register_listener`, { event, handler }).then(
-    () => new PluginListener(plugin, event, handler.id)
-  )
+    const handler = new Channel<T>();
+    handler.onmessage = cb;
+    return invoke(`plugin:${plugin}|register_listener`, { event, handler }).then(
+        () => new PluginListener(plugin, event, handler.id),
+    );
 }
 
 /**
@@ -127,13 +118,13 @@ async function addPluginListener<T>(
  *
  * @since 1.0.0
  */
-type InvokeArgs = Record<string, unknown> | number[] | ArrayBuffer | Uint8Array
+type InvokeArgs = Record<string, unknown> | number[] | ArrayBuffer | Uint8Array;
 
 /**
  * @since 2.0.0
  */
 interface InvokeOptions {
-  headers: Headers | Record<string, string>
+    headers: Headers | Record<string, string>;
 }
 
 /**
@@ -151,12 +142,8 @@ interface InvokeOptions {
  *
  * @since 1.0.0
  */
-async function invoke<T>(
-  cmd: string,
-  args: InvokeArgs = {},
-  options?: InvokeOptions
-): Promise<T> {
-  return window.__TAURI_INTERNALS__.invoke(cmd, args, options)
+async function invoke<T>(cmd: string, args: InvokeArgs = {}, options?: InvokeOptions): Promise<T> {
+    return window.__TAURI_INTERNALS__.invoke(cmd, args, options);
 }
 
 /**
@@ -190,7 +177,7 @@ async function invoke<T>(
  * @since 1.0.0
  */
 function convertFileSrc(filePath: string, protocol = 'asset'): string {
-  return window.__TAURI_INTERNALS__.convertFileSrc(filePath, protocol)
+    return window.__TAURI_INTERNALS__.convertFileSrc(filePath, protocol);
 }
 
 /**
@@ -216,34 +203,27 @@ function convertFileSrc(filePath: string, protocol = 'asset'): string {
  * ```
  */
 export class Resource {
-  readonly #rid: number
+    readonly #rid: number;
 
-  get rid(): number {
-    return this.#rid
-  }
+    get rid(): number {
+        return this.#rid;
+    }
 
-  constructor(rid: number) {
-    this.#rid = rid
-  }
+    constructor(rid: number) {
+        this.#rid = rid;
+    }
 
-  /**
-   * Destroys and cleans up this resource from memory.
-   * **You should not call any method on this object anymore and should drop any reference to it.**
-   */
-  async close(): Promise<void> {
-    return invoke('plugin:resources|close', {
-      rid: this.rid
-    })
-  }
+    /**
+     * Destroys and cleans up this resource from memory.
+     * **You should not call any method on this object anymore and should drop any reference to it.**
+     */
+    async close(): Promise<void> {
+        return invoke('plugin:resources|close', {
+            rid: this.rid,
+        });
+    }
 }
 
-export type { InvokeArgs, InvokeOptions }
+export type { InvokeArgs, InvokeOptions };
 
-export {
-  transformCallback,
-  Channel,
-  PluginListener,
-  addPluginListener,
-  invoke,
-  convertFileSrc
-}
+export { transformCallback, Channel, PluginListener, addPluginListener, invoke, convertFileSrc };

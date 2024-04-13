@@ -12,9 +12,9 @@ exclude = [
 ]
 
 [workspace.package]
-authors = ["Tauri Programme within The Commons Conservancy"]
-homepage = "https://tauri.app/"
-repository = "https://github.com/tauri-apps/tauri"
+authors = ["Tauri Programme within The Commons Conservancy", "FabianLars"]
+homepage = "https://github.com/FabianLars/tauri-revanced"
+repository = "https://github.com/FabianLars/tauri-revanced"
 categories = ["gui", "web-programming"]
 license = "Apache-2.0 OR MIT"
 edition = "2021"
