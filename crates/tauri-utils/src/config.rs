@@ -99,16 +99,8 @@ impl Default for WebviewUrl {
 #[cfg_attr(feature = "schema", derive(JsonSchema))]
 #[cfg_attr(feature = "schema", schemars(rename_all = "lowercase"))]
 pub enum BundleType {
-    /// The debian bundle (.deb).
-    Deb,
-    /// The RPM bundle (.rpm).
-    Rpm,
     /// The AppImage bundle (.appimage).
     AppImage,
-    /// The Microsoft Installer bundle (.msi).
-    Msi,
-    /// The NSIS bundle (.exe).
-    Nsis,
     /// The macOS application bundle (.app).
     App,
     /// The Apple Disk Image bundle (.dmg).
@@ -121,11 +113,7 @@ impl BundleType {
     /// All bundle types.
     fn all() -> &'static [Self] {
         &[
-            BundleType::Deb,
-            BundleType::Rpm,
             BundleType::AppImage,
-            BundleType::Msi,
-            BundleType::Nsis,
             BundleType::App,
             BundleType::Dmg,
             BundleType::Updater,
@@ -139,11 +127,7 @@ impl Display for BundleType {
             f,
             "{}",
             match self {
-                Self::Deb => "deb",
-                Self::Rpm => "rpm",
                 Self::AppImage => "appimage",
-                Self::Msi => "msi",
-                Self::Nsis => "nsis",
                 Self::App => "app",
                 Self::Dmg => "dmg",
                 Self::Updater => "updater",
@@ -168,11 +152,7 @@ impl<'de> Deserialize<'de> for BundleType {
     {
         let s = String::deserialize(deserializer)?;
         match s.to_lowercase().as_str() {
-            "deb" => Ok(Self::Deb),
-            "rpm" => Ok(Self::Rpm),
             "appimage" => Ok(Self::AppImage),
-            "msi" => Ok(Self::Msi),
-            "nsis" => Ok(Self::Nsis),
             "app" => Ok(Self::App),
             "dmg" => Ok(Self::Dmg),
             "updater" => Ok(Self::Updater),

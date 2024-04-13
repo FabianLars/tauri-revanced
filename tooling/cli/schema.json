@@ -1735,38 +1735,10 @@
       "description": "A bundle referenced by tauri-bundler.",
       "oneOf": [
         {
-          "description": "The debian bundle (.deb).",
-          "type": "string",
-          "enum": [
-            "deb"
-          ]
-        },
-        {
-          "description": "The RPM bundle (.rpm).",
-          "type": "string",
-          "enum": [
-            "rpm"
-          ]
-        },
-        {
           "description": "The AppImage bundle (.appimage).",
           "type": "string",
           "enum": [
             "appimage"
-          ]
-        },
-        {
-          "description": "The Microsoft Installer bundle (.msi).",
-          "type": "string",
-          "enum": [
-            "msi"
-          ]
-        },
-        {
-          "description": "The NSIS bundle (.exe).",
-          "type": "string",
-          "enum": [
-            "nsis"
           ]
         },
         {
