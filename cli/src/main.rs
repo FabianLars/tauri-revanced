@@ -41,8 +41,7 @@ struct Args {
         env = "CARGO_BUILD_TARGET",
         help = "The target triple the binary was built for. Defaults to the currently running platform."
     )]
-    // TODO: Change this to a Vec
-    target: String,
+    target: Vec<String>,
     /// Directory for all generated artifacts
     #[arg(
         long,
